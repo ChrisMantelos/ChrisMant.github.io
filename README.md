@@ -3,7 +3,7 @@
 Welcome to my personal portfolio repository! This is a modern, responsive, and performance-optimized single-page website showcasing my education, certifications, and skills in Software Development, Machine Learning, and Artificial Intelligence (AI).
 
 ## Live Demo & Links
-- Live Portfolio: [My Portofolio](https://chrismantelos.github.io/ChrisMant.github.io/))
+- Live Portfolio: [My Portofolio](https://chrismantelos.github.io/ChrisMant.github.io/)
 - LinkedIn: [Christos Mantelos on LinkedIn](https://www.linkedin.com/in/chris-mantelos-3983b43b5/)
 - GitHub: [mantwins](https://github.com/mantwins)
 
