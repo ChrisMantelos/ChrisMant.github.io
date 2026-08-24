@@ -19,7 +19,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -310,23 +310,64 @@
             padding: 80px 24px 60px 24px;
             max-width: 900px;
             margin: 0 auto;
-            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) both;
         }
 
+        /* Νέο Μοντέρνο Hero Title με Blur & Shimmer Animation */
         .hero-title {
             font-family: 'Space Grotesk', sans-serif;
-            font-size: 3.5rem;
+            font-size: 3.8rem;
             font-weight: 800;
             line-height: 1.15;
             letter-spacing: -1.5px;
             margin-bottom: 20px;
             color: var(--text-primary);
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.35em;
         }
 
-        .hero-title span {
-            background: linear-gradient(135deg, var(--primary) 20%, var(--accent) 100%);
+        .fade-text {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(12px);
+            transform: translateY(20px) scale(0.95);
+            animation: blurReveal 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        }
+
+        .gradient-name {
+            display: inline-block;
+            opacity: 0;
+            filter: blur(12px);
+            transform: translateY(20px) scale(0.95);
+            background: linear-gradient(
+                110deg, 
+                var(--primary) 0%, 
+                var(--accent) 35%, 
+                #ffffff 50%, 
+                var(--accent) 65%, 
+                var(--primary) 100%
+            );
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
+            animation: 
+                blurReveal 1s cubic-bezier(0.16, 1, 0.3, 1) 0.25s forwards,
+                shimmerWave 4s linear infinite 1.25s;
+        }
+
+        @keyframes blurReveal {
+            to {
+                opacity: 1;
+                filter: blur(0px);
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        @keyframes shimmerWave {
+            to {
+                background-position: 200% center;
+            }
         }
 
         .hero-subtitle {
@@ -335,6 +376,7 @@
             line-height: 1.6;
             max-width: 600px;
             margin-bottom: 35px;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.3s both;
         }
 
         .hero-buttons {
@@ -342,6 +384,7 @@
             gap: 16px;
             flex-wrap: wrap;
             justify-content: center;
+            animation: slideUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.45s both;
         }
 
         .hero-btn {
@@ -872,7 +915,7 @@
 
         @media (max-width: 768px) {
             .navbar { padding: 15px 4%; }
-            .hero-title { font-size: 2.5rem; }
+            .hero-title { font-size: 2.6rem; }
             .hero-subtitle { font-size: 1.1rem; }
             .projects-grid,
             .certifications-grid { grid-template-columns: 1fr; }
@@ -924,7 +967,10 @@
     </div>
 
     <section class="hero-section">
-        <h1 class="hero-title">Hi, I'm <span>Christos Mantelos</span></h1>
+        <h1 class="hero-title" aria-label="Hi, I'm Christos Mantelos">
+            <span class="fade-text">Hi, I'm</span>
+            <span class="gradient-name">Christos Mantelos</span>
+        </h1>
         <p class="hero-subtitle">
             Specializing in Software Development, Machine Learning, and Artificial Intelligence (AI). 
             Exploring modern technology and crafting smart, efficient digital solutions.
