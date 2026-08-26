@@ -1132,11 +1132,11 @@
         
         <section class="stats-grid reveal">
             <div class="stat-card">
-                <div class="stat-number" data-target="11">0</div>
+                <div class="stat-number" data-target="11" data-symbol="+">0</div>
                 <div class="stat-label">Verified Certifications</div>
             </div>
             <div class="stat-card">
-                <div class="stat-number" data-target="3">0</div>
+                <div class="stat-number" data-target="3" data-symbol="+">0</div>
                 <div class="stat-label">Core Projects</div>
             </div>
             <div class="stat-card">
@@ -1690,15 +1690,16 @@
             document.querySelectorAll('.stat-number').forEach(counter => {
                 const target = parseInt(counter.getAttribute('data-target'));
                 if(isNaN(target)) return;
+                const symbol = counter.getAttribute('data-symbol') || '%';
                 let count = 0;
                 const speed = target / 20;
                 const update = () => {
                     count += speed;
                     if(count < target) {
-                        counter.textContent = Math.ceil(count);
+                        counter.textContent = Math.ceil(count) + symbol;
                         setTimeout(update, 40);
                     } else {
-                        counter.textContent = target + '%';
+                        counter.textContent = target + symbol;
                     }
                 };
                 update();
