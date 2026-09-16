@@ -2087,7 +2087,7 @@
         });
     </script>
                <!-- Back to Top Button -->
-        <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Back to Top">
+        <button id="back-to-top" aria-label="Back to Top">
             <i class="fas fa-arrow-up"></i>
         </button>
         
@@ -2237,7 +2237,7 @@
         return "I couldn't find exact details on that! 🤔 Try asking specifically about projects like **AI Study Buddy**, certifications like **Anthropic / Google Cloud**, or Christos's **Tech Stack**.";
     }
 
-    function handleSend() {
+   function handleSend() {
         const text = chatInput.value.trim();
         if (!text) return;
         addMessage(text, 'user');
@@ -2254,17 +2254,25 @@
         }, 350);
     }
 
-    chatSend.addEventListener('click', handleSend);
-    chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
-        const backToTopBtn = document.getElementById('back-to-top');
+    // Event Listeners με ασφάλεια (Null Checks)
+    if (chatSend) chatSend.addEventListener('click', handleSend);
+    if (chatInput) chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
 
-    window.addEventListener('scroll', () => {
-        if (window.scrollY > 300) {
-            backToTopBtn.classList.add('show');
-        } else {
-            backToTopBtn.classList.remove('show');
-        }
-    });
+    // Back to Top Logic
+    const backToTopBtn = document.getElementById('back-to-top');
+    if (backToTopBtn) {
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+    }
 </script>
 </body>
 </html>
