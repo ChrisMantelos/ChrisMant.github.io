@@ -1132,6 +1132,136 @@
             color: var(--accent);
             font-weight: 600;
         }
+                /* --- CHATBOT WIDGET --- */
+        #chatbot-container {
+            position: fixed;
+            bottom: 25px;
+            right: 25px;
+            z-index: 9999;
+        }
+        
+        #chatbot-toggle {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+        
+        #chatbot-toggle:hover {
+            transform: scale(1.1);
+        }
+        
+        #chatbot-window {
+            width: 320px;
+            height: 430px;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 16px;
+            display: flex;
+            flex-direction: column;
+            position: absolute;
+            bottom: 70px;
+            right: 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(16px);
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        #chatbot-window.hidden {
+            display: none;
+        }
+        
+        .chat-header {
+            background: var(--primary);
+            padding: 12px 15px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-weight: bold;
+            border-bottom: 1px solid var(--border-color);
+        }
+        
+        #chat-messages {
+            flex: 1;
+            padding: 12px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        
+        .message {
+            max-width: 85%;
+            padding: 8px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
+            line-height: 1.4;
+        }
+        
+        .message.bot {
+            background: rgba(255, 255, 255, 0.08);
+            align-self: flex-start;
+            border-bottom-left-radius: 2px;
+        }
+        
+        .message.user {
+            background: var(--accent);
+            color: #fff;
+            align-self: flex-end;
+            border-bottom-right-radius: 2px;
+        }
+        
+        .chat-suggestions {
+            display: flex;
+            gap: 5px;
+            padding: 6px 10px;
+            overflow-x: auto;
+            border-top: 1px solid var(--border-color);
+        }
+        
+        .chat-suggestions button {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.75rem;
+            cursor: pointer;
+            white-space: nowrap;
+        }
+        
+        .chat-input-area {
+            display: flex;
+            padding: 10px;
+            gap: 6px;
+            background: rgba(0,0,0,0.1);
+        }
+        
+        .chat-input-area input {
+            flex: 1;
+            background: transparent;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 6px 10px;
+            color: var(--text-primary);
+            outline: none;
+        }
+        
+        .chat-input-area button {
+            background: var(--accent);
+            border: none;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 8px;
+            cursor: pointer;
+        }
     </style>
 </head>
 <body>
@@ -1915,5 +2045,82 @@
             "max-glare": 0.15,
         });
     </script>
+    <!-- Chatbot Widget -->
+<div id="chatbot-container">
+    <button id="chatbot-toggle" aria-label="Open Chat"><i class="fas fa-robot"></i></button>
+    <div id="chatbot-window" class="hidden">
+        <div class="chat-header">
+            <span><i class="fas fa-robot"></i> Chris AI Assistant</span>
+            <button id="chat-close" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">&times;</button>
+        </div>
+        <div id="chat-messages">
+            <div class="message bot">Γεια σου! Είμαι ο εικονικός βοηθός του Χρήστου. Τι θα ήθελες να μάθεις;</div>
+        </div>
+        <div class="chat-suggestions">
+            <button onclick="sendQuickMsg('Projects')">💻 Projects</button>
+            <button onclick="sendQuickMsg('Skills')">🛠️ Skills</button>
+            <button onclick="sendQuickMsg('Certifications')">📜 Certs</button>
+            <button onclick="sendQuickMsg('Education')">🎓 Σπουδές</button>
+        </div>
+        <div class="chat-input-area">
+            <input type="text" id="chat-input" placeholder="Γράψε μια ερώτηση...">
+            <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+        </div>
+    </div>
+</div>
+<script>
+    const chatToggle = document.getElementById('chatbot-toggle');
+    const chatWindow = document.getElementById('chatbot-window');
+    const chatClose = document.getElementById('chat-close');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const chatMessages = document.getElementById('chat-messages');
+
+    chatToggle.addEventListener('click', () => chatWindow.classList.toggle('hidden'));
+    chatClose.addEventListener('click', () => chatWindow.classList.add('hidden'));
+
+    function addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('message', sender);
+        msgDiv.innerText = text;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    function processQuery(query) {
+        const q = query.toLowerCase();
+        if (q.includes('project') || q.includes('έργα') || q.includes('προτζεκτ')) {
+            return "Τα κύρια projects του Χρήστου είναι:\n• AI Study Buddy\n• Text Professionalizer\n• Expense Tracker (Pandas)\n• Flutter Quote Generator";
+        } else if (q.includes('skill') || q.includes('stack') || q.includes('γλώσσ')) {
+            return "Το Tech Stack περιλαμβάνει:\n• Python\n• Flutter / Dart\n• SQL Databases\n• Linux OS";
+        } else if (q.includes('cert') || q.includes('πιστοποι')) {
+            return "Έχει πιστοποιήσεις από κορυφαίους οργανισμούς όπως: Anthropic (Claude API), Google Cloud, AWS, freeCodeCamp & Kaggle!";
+        } else if (q.includes('σπουδ') || q.includes('educat') || q.includes('σχολ')) {
+            return "Σπουδάζει Software Development στη ΣΑΕΚ Θέρμης (2024 - Σήμερα).";
+        } else {
+            return "Μπορείς να με ρωτήσεις για τα Projects, τα Skills, τις Πιστοποιήσεις (Certifications) ή τις Σπουδές του Χρήστου!";
+        }
+    }
+
+    function handleSend() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        addMessage(text, 'user');
+        chatInput.value = '';
+        setTimeout(() => {
+            addMessage(processQuery(text), 'bot');
+        }, 400);
+    }
+
+    function sendQuickMsg(msg) {
+        addMessage(msg, 'user');
+        setTimeout(() => {
+            addMessage(processQuery(msg), 'bot');
+        }, 400);
+    }
+
+    chatSend.addEventListener('click', handleSend);
+    chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
+</script>
 </body>
 </html>
