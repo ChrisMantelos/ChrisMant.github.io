@@ -20,6 +20,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         * {
@@ -1065,6 +1066,72 @@
             .back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
             .toast { left: 16px; right: 16px; bottom: 80px; }
         }
+        /* --- TECH STACK GRID --- */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-card {
+            background: var(--card-bg);
+            backdrop-filter: blur(16px);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            border-radius: 16px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            border-color: var(--accent);
+            transform: translateY(-4px);
+        }
+
+        .skill-card i {
+            font-size: 2.5rem;
+            margin-bottom: 0.5rem;
+            color: var(--accent);
+            display: block;
+        }
+
+        /* --- TIMELINE --- */
+        .timeline {
+            position: relative;
+            border-left: 2px solid var(--primary);
+            margin: 2rem 0 2rem 1rem;
+            padding-left: 1.5rem;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -1.95rem;
+            top: 0.2rem;
+            width: 0.8rem;
+            height: 0.8rem;
+            background: var(--accent);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--accent);
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            padding: 1.2rem;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+        }
+
+        .timeline-content .timeline-date {
+            font-size: 0.85rem;
+            color: var(--accent);
+            font-weight: 600;
+        }
     </style>
 </head>
 <body>
@@ -1177,7 +1244,31 @@
                 </div>
             </div>
         </div>
+        <!-- Tech Stack Section -->
+        <div id="skills" class="reveal" style="margin-bottom: 60px;">
+            <h2 class="section-title">Tech Stack</h2>
+            <div class="skills-grid">
+                <div class="skill-card"><i class="fab fa-python"></i><span>Python</span></div>
+                <div class="skill-card"><i class="fab fa-flutter"></i><span>Flutter</span></div>
+                <div class="skill-card"><i class="fas fa-database"></i><span>SQL</span></div>
+                <div class="skill-card"><i class="fab fa-aws"></i><span>AWS</span></div>
+            </div>
+        </div>
 
+        <!-- Experience / Timeline Section -->
+        <div id="experience" class="reveal" style="margin-bottom: 60px;">
+            <h2 class="section-title">Εκπαίδευση & Εμπειρία</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-dot"></div>
+                    <div class="timeline-content">
+                        <span class="timeline-date">2024 - Σήμερα</span>
+                        <h3>Σπουδές Software Development</h3>
+                        <p style="color: var(--text-secondary); margin-top: 4px;">ΣΑΕΚ Θέρμης</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <div id="projects" class="reveal">
             <h2 class="section-title">Projects</h2>
             
@@ -1802,6 +1893,15 @@
                 submitBtn.disabled = false;
                 submitText.textContent = 'Send Message';
             });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
+    <script>
+        VanillaTilt.init(document.querySelectorAll(".project-card, .certification-card, .skill-card"), {
+            max: 10,
+            speed: 400,
+            glare: true,
+            "max-glare": 0.15,
         });
     </script>
 </body>
