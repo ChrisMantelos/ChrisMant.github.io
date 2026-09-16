@@ -1132,7 +1132,7 @@
             color: var(--accent);
             font-weight: 600;
         }
-         /* --- BACK TO TOP BUTTON --- */
+               /* --- BACK TO TOP BUTTON --- */
         #back-to-top {
             position: fixed;
             bottom: 25px;
@@ -1150,27 +1150,16 @@
             font-size: 1.1rem;
             box-shadow: 0 4px 15px rgba(0,0,0,0.3);
             backdrop-filter: blur(12px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
+            transition: all 0.3s ease;
             z-index: 9998;
-            
-           
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        
-        
-        #back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
         }
         
         #back-to-top:hover {
             border-color: var(--accent);
             color: var(--accent);
             transform: translateY(-3px);
-        } 
+        }
+        
         /* --- CHATBOT WIDGET --- */
         #chatbot-container {
             position: fixed;
@@ -2087,7 +2076,7 @@
         });
     </script>
                <!-- Back to Top Button -->
-        <button id="back-to-top" aria-label="Back to Top">
+        <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Back to Top">
             <i class="fas fa-arrow-up"></i>
         </button>
         
@@ -2237,7 +2226,7 @@
         return "I couldn't find exact details on that! 🤔 Try asking specifically about projects like **AI Study Buddy**, certifications like **Anthropic / Google Cloud**, or Christos's **Tech Stack**.";
     }
 
-   function handleSend() {
+    function handleSend() {
         const text = chatInput.value.trim();
         if (!text) return;
         addMessage(text, 'user');
@@ -2254,25 +2243,8 @@
         }, 350);
     }
 
-    // Event Listeners με ασφάλεια (Null Checks)
-    if (chatSend) chatSend.addEventListener('click', handleSend);
-    if (chatInput) chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
-
-    // Back to Top Logic
-    const backToTopBtn = document.getElementById('back-to-top');
-    if (backToTopBtn) {
-        backToTopBtn.addEventListener('click', () => {
-            window.scrollTo({ top: 0, behavior: 'smooth' });
-        });
-
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 300) {
-                backToTopBtn.classList.add('show');
-            } else {
-                backToTopBtn.classList.remove('show');
-            }
-        });
-    }
+    chatSend.addEventListener('click', handleSend);
+    chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
 </script>
 </body>
 </html>
