@@ -46,7 +46,8 @@ Welcome to my personal portfolio repository! This is a modern, responsive, and p
 ---
 
 ## Certifications
-- **Cisco:**Linux Unhatched
+
+- **Cisco:** Linux Unhatched
 - **Anthropic:** Building with the Claude API
 - **University of Helsinki:** Elements of AI
 - **Amazon Web Services:** Introduction to Generative AI
