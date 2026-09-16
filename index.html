@@ -1132,14 +1132,35 @@
             color: var(--accent);
             font-weight: 600;
         }
-                /* --- BACK TO TOP & CHATBOT LAYOUT --- */
+               /* --- BACK TO TOP BUTTON --- */
         #back-to-top {
             position: fixed;
             bottom: 25px;
-            right: 90px; /* Τοποθέτηση ακριβώς αριστερά από το Chatbot */
+            right: 90px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.1rem;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+            backdrop-filter: blur(12px);
+            transition: all 0.3s ease;
             z-index: 9998;
         }
         
+        #back-to-top:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            transform: translateY(-3px);
+        }
+        
+        /* --- CHATBOT WIDGET --- */
         #chatbot-container {
             position: fixed;
             bottom: 25px;
@@ -1148,13 +1169,13 @@
         }
         
         #chatbot-toggle {
-            width: 55px;
-            height: 55px;
+            width: 50px;
+            height: 50px;
             border-radius: 50%;
             background: var(--accent);
             color: #fff;
             border: none;
-            font-size: 1.4rem;
+            font-size: 1.3rem;
             cursor: pointer;
             box-shadow: 0 4px 20px rgba(0,0,0,0.3);
             transition: transform 0.3s ease;
@@ -1166,14 +1187,14 @@
         
         #chatbot-window {
             width: 340px;
-            height: 460px;
+            height: 470px;
             background: var(--card-bg);
             border: 1px solid var(--border-color);
             border-radius: 16px;
             display: flex;
             flex-direction: column;
             position: absolute;
-            bottom: 70px;
+            bottom: 65px;
             right: 0;
             box-shadow: 0 10px 30px rgba(0,0,0,0.5);
             backdrop-filter: blur(16px);
@@ -1205,10 +1226,10 @@
         }
         
         .message {
-            max-width: 85%;
-            padding: 10px 14px;
-            border-radius: 14px;
-            font-size: 0.88rem;
+            max-width: 88%;
+            padding: 10px 12px;
+            border-radius: 12px;
+            font-size: 0.85rem;
             line-height: 1.45;
             white-space: pre-line;
         }
@@ -1228,7 +1249,7 @@
         
         .chat-suggestions {
             display: flex;
-            gap: 6px;
+            gap: 5px;
             padding: 8px 10px;
             overflow-x: auto;
             border-top: 1px solid var(--border-color);
@@ -1238,23 +1259,17 @@
             background: rgba(255,255,255,0.06);
             border: 1px solid var(--border-color);
             color: var(--text-primary);
-            padding: 5px 10px;
-            border-radius: 12px;
-            font-size: 0.78rem;
+            padding: 4px 8px;
+            border-radius: 10px;
+            font-size: 0.75rem;
             cursor: pointer;
             white-space: nowrap;
-            transition: background 0.2s ease;
-        }
-        
-        .chat-suggestions button:hover {
-            background: var(--accent);
-            color: #fff;
         }
         
         .chat-input-area {
             display: flex;
             padding: 10px;
-            gap: 8px;
+            gap: 6px;
             background: rgba(0,0,0,0.15);
         }
         
@@ -1263,7 +1278,7 @@
             background: transparent;
             border: 1px solid var(--border-color);
             border-radius: 8px;
-            padding: 8px 12px;
+            padding: 8px 10px;
             color: var(--text-primary);
             outline: none;
             font-size: 0.85rem;
@@ -1273,10 +1288,10 @@
             background: var(--accent);
             border: none;
             color: white;
-            padding: 8px 14px;
+            padding: 8px 12px;
             border-radius: 8px;
             cursor: pointer;
-        }      
+        }
     </style>
 </head>
 <body>
@@ -2060,6 +2075,11 @@
             "max-glare": 0.15,
         });
     </script>
+               <!-- Back to Top Button -->
+        <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Back to Top">
+            <i class="fas fa-arrow-up"></i>
+        </button>
+        
         <!-- Chatbot Widget -->
         <div id="chatbot-container">
             <button id="chatbot-toggle" aria-label="Open Chat"><i class="fas fa-robot"></i></button>
@@ -2069,7 +2089,7 @@
                     <button id="chat-close" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">&times;</button>
                 </div>
                 <div id="chat-messages">
-                    <div class="message bot">Hi there!  I'm Christos's AI assistant. How can I help you explore his portfolio today?</div>
+                    <div class="message bot">Hi there!  I'm Christos's AI assistant. Ask me anything about his projects, certifications, skills, or background!</div>
                 </div>
                 <div class="chat-suggestions">
                     <button onclick="sendQuickMsg('Projects')">💻 Projects</button>
@@ -2079,124 +2099,152 @@
                     <button onclick="sendQuickMsg('Contact')">✉️ Contact</button>
                 </div>
                 <div class="chat-input-area">
-                    <input type="text" id="chat-input" placeholder="Ask a question...">
+                    <input type="text" id="chat-input" placeholder="Ask e.g. tell me about AI Study Buddy...">
                     <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
                 </div>
             </div>
-        </div>    
-        <script>
-        const chatToggle = document.getElementById('chatbot-toggle');
-        const chatWindow = document.getElementById('chatbot-window');
-        const chatClose = document.getElementById('chat-close');
-        const chatInput = document.getElementById('chat-input');
-        const chatSend = document.getElementById('chat-send');
-        const chatMessages = document.getElementById('chat-messages');
+        </div>
+    <script>
+    const chatToggle = document.getElementById('chatbot-toggle');
+    const chatWindow = document.getElementById('chatbot-window');
+    const chatClose = document.getElementById('chat-close');
+    const chatInput = document.getElementById('chat-input');
+    const chatSend = document.getElementById('chat-send');
+    const chatMessages = document.getElementById('chat-messages');
 
-        chatToggle.addEventListener('click', () => chatWindow.classList.toggle('hidden'));
-        chatClose.addEventListener('click', () => chatWindow.classList.add('hidden'));
+    chatToggle.addEventListener('click', () => chatWindow.classList.toggle('hidden'));
+    chatClose.addEventListener('click', () => chatWindow.classList.add('hidden'));
 
-        function addMessage(text, sender) {
-            const msgDiv = document.createElement('div');
-            msgDiv.classList.add('message', sender);
-            msgDiv.innerText = text;
-            chatMessages.appendChild(msgDiv);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
+    function addMessage(text, sender) {
+        const msgDiv = document.createElement('div');
+        msgDiv.classList.add('message', sender);
+        msgDiv.innerText = text;
+        chatMessages.appendChild(msgDiv);
+        chatMessages.scrollTop = chatMessages.scrollHeight;
+    }
+
+    const knowledgeBase = [
+        // GENERAL INTENTS
+        {
+            keywords: ["hi", "hello", "hey", "who are you", "greetings"],
+            response: "Hello! 👋 I'm Christos's AI Assistant. Ask me about specific projects (e.g. 'AI Study Buddy'), certifications, skills, or studies!"
+        },
+        {
+            keywords: ["about", "bio", "christos", "mantelos", "who is"],
+            response: "Christos Mantelos is a Software Development student at SAEK Thermis specializing in Python, Flutter, SQL, Linux, and AI integration."
+        },
+        {
+            keywords: ["project", "projects", "work", "portfolio"],
+            response: "🚀 **Featured Projects:**\n1. **AI Study Buddy** (AI Assistant)\n2. **Text Professionalizer** (NLP/AI)\n3. **Expense Tracker-Pandas** (Data Analysis)\n4. **Flutter Quote Generator** (Mobile App)\n\nType the name of any project to learn more!"
+        },
+
+        // SPECIFIC PROJECTS
+        {
+            keywords: ["study buddy", "ai study", "studybot"],
+            response: "🤖 **AI Study Buddy**\n• **Created:** 2024\n• **Purpose:** Helps students analyze study material, generate summaries, and test their knowledge interactively.\n• **Tech Used:** Python, LLM APIs, Streamlit/Web Interface.\n• **Key Feature:** Simplifies complex academic topics using tailored AI prompts."
+        },
+        {
+            keywords: ["text professionalizer", "professionalizer", "text AI"],
+            response: "✍️ **Text Professionalizer**\n• **Created:** 2024\n• **Purpose:** Converts informal drafts into formal, professional business emails and documentation.\n• **Tech Used:** Python, Natural Language Processing, Prompt Engineering.\n• **Key Feature:** Adjusts tone, grammar, and vocabulary seamlessly."
+        },
+        {
+            keywords: ["expense tracker", "pandas tracker", "expense"],
+            response: "📊 **Expense Tracker-Pandas**\n• **Created:** 2024\n• **Purpose:** Automates personal financial tracking and category-wise spending analysis.\n• **Tech Used:** Python, Pandas, Matplotlib/Seaborn.\n• **Key Feature:** Generates visual spending reports and CSV data insights."
+        },
+        {
+            keywords: ["flutter quote", "quote generator", "quote app"],
+            response: "📱 **Flutter Quote Generator**\n• **Created:** 2024\n• **Purpose:** A cross-platform mobile app providing daily inspirational quotes with clean UI animations.\n• **Tech Used:** Flutter, Dart, REST APIs.\n• **Key Feature:** Fast state management and slick UI design."
+        },
+
+        // CERTIFICATIONS INTENTS
+        {
+            keywords: ["cert", "certs", "certification", "certifications"],
+            response: "📜 **Christos's Certifications:**\n• Anthropic (Claude API)\n• Google Cloud (Vertex AI & Prompt Design)\n• AWS (Generative AI)\n• IBM (AI Fundamentals)\n• freeCodeCamp (Python)\n• Kaggle & University of Helsinki\n\nAsk about any specific certification for full details!"
+        },
+        {
+            keywords: ["anthropic", "claude"],
+            response: "📜 **Anthropic: Building with Claude API**\n• **Focus:** Integrating Claude LLMs into applications.\n• **Skills Learned:** Prompt engineering, API integration, streaming responses, and building AI agents."
+        },
+        {
+            keywords: ["google", "vertex", "prompt design"],
+            response: "📜 **Google Cloud: Prompt Design & AI Principles**\n• **Focus:** Generative AI solutions on Google Cloud Platform.\n• **Skills Learned:** Designing effective prompts for Vertex AI, enterprise AI safety, and AI ethics."
+        },
+        {
+            keywords: ["aws", "amazon"],
+            response: "📜 **AWS: Introduction to Generative AI**\n• **Focus:** Fundamentals of Cloud-based Generative AI.\n• **Skills Learned:** AWS AI services overview, Foundation Models (FMs), and cloud deployment basics."
+        },
+        {
+            keywords: ["helsinki", "elements of ai"],
+            response: "📜 **University of Helsinki: Elements of AI**\n• **Focus:** Core concepts of Artificial Intelligence & Machine Learning.\n• **Skills Learned:** Search algorithms, neural networks, machine learning math, and real-world AI applications."
+        },
+        {
+            keywords: ["freecodecamp", "scientific computing"],
+            response: "📜 **freeCodeCamp: Scientific Computing with Python**\n• **Focus:** Advanced Python programming.\n• **Skills Learned:** Data structures, algorithms, object-oriented programming (OOP), and problem-solving."
+        },
+        {
+            keywords: ["ibm"],
+            response: "📜 **IBM: AI Fundamentals**\n• **Focus:** Foundational principles of AI technology.\n• **Skills Learned:** Machine Learning pipeline, NLP basics, computer vision, and IBM Watson tools."
+        },
+
+        // SKILLS & EDUCATION
+        {
+            keywords: ["skill", "skills", "tech", "stack", "python", "flutter", "sql", "linux"],
+            response: "🛠️ **Tech Stack:**\n• **Languages:** Python, Dart, SQL, JavaScript\n• **Frameworks:** Flutter, HTML5/CSS3\n• **Systems:** Linux (CLI Navigation, Bash), Git/GitHub"
+        },
+        {
+            keywords: ["education", "study", "studies", "saek", "thermis"],
+            response: "🎓 **Education:**\nSoftware Development Studies at **SAEK Thermis** (2024 - Present), focusing on OOP, Data Structures, Web Development, and Databases."
+        },
+        {
+            keywords: ["contact", "email", "reach", "linkedin", "github"],
+            response: "✉️ **Get in Touch:**\n• LinkedIn: Christos Mantelos\n• GitHub: ChrisMantelos\n• Or send a message using the Contact Form on this page!"
         }
+    ];
 
-        const knowledgeBase = [
-            {
-                keywords: ["hi", "hello", "hey", "greetings", "who are you"],
-                response: "Hello! 👋 I'm Christos's AI Assistant. Feel free to ask me about his projects, technical skills, certifications, or studies!"
-            },
-            {
-                keywords: ["about", "bio", "background", "christos", "mantelos", "who is"],
-                response: "Christos Mantelos is a Software Development student at SAEK Thermis specializing in Python, Flutter, SQL, Linux, and AI/Machine Learning applications."
-            },
-            {
-                keywords: ["study buddy", "ai study"],
-                response: "🤖 **AI Study Buddy**\nAn interactive AI-powered learning assistant built to optimize study sessions and simplify complex concepts."
-            },
-            {
-                keywords: ["text professionalizer", "professionalizer"],
-                response: "✍️ **Text Professionalizer**\nAn AI tool designed to transform raw and informal text into polished business communication."
-            },
-            {
-                keywords: ["expense", "pandas", "tracker"],
-                response: "📊 **Expense Tracker-Pandas**\nA Python data analysis tool leveraging Pandas for categorical expense tracking and spending trends."
-            },
-            {
-                keywords: ["quote", "generator", "flutter quote"],
-                response: "📱 **Flutter Quote Generator**\nA cross-platform mobile application built with Flutter & Dart for curating inspirational quotes."
-            },
-            {
-                keywords: ["project", "projects", "work", "portfolio", "apps"],
-                response: "🚀 **Featured Projects:**\n1. AI Study Buddy\n2. Text Professionalizer\n3. Expense Tracker (Pandas)\n4. Flutter Quote Generator\n\nAsk me about any specific project for details!"
-            },
-            {
-                keywords: ["skill", "skills", "tech", "stack", "technology", "python", "flutter", "sql", "linux"],
-                response: "🛠️ **Tech Stack:**\n• **Languages:** Python, Dart, SQL, JavaScript\n• **Frameworks:** Flutter, HTML5/CSS3\n• **Environment:** Linux (CLI), Git/GitHub"
-            },
-            {
-                keywords: ["cert", "certs", "certification", "certifications", "course", "anthropic", "google", "aws", "ibm", "kaggle", "freecodecamp"],
-                response: "📜 **Key Certifications:**\n• Anthropic: Building with Claude API\n• Google Cloud: Prompt Design & AI Principles\n• AWS: Intro to Generative AI\n• University of Helsinki: Elements of AI\n• IBM: AI Fundamentals\n• freeCodeCamp: Scientific Computing with Python"
-            },
-            {
-                keywords: ["education", "study", "studies", "degree", "saek", "thermis", "school"],
-                response: "🎓 **Education:**\nSoftware Development Studies at **SAEK Thermis** (2024 - Present)."
-            },
-            {
-                keywords: ["contact", "email", "reach", "hire", "linkedin", "github", "social"],
-                response: "✉️ **Connect with Christos:**\n• LinkedIn: Christos Mantelos\n• GitHub: ChrisMantelos\n• Or use the Contact form at the bottom of this page!"
-            }
-        ];
+    function processQuery(query) {
+        const q = query.toLowerCase().trim();
+        if (!q) return "Please enter a question!";
 
-        function processQuery(query) {
-            const q = query.toLowerCase().trim();
-            if (!q) return "Please enter a question!";
+        let bestMatch = null;
+        let maxScore = 0;
 
-            let bestMatch = null;
-            let maxScore = 0;
-
-            knowledgeBase.forEach(item => {
-                let score = 0;
-                item.keywords.forEach(keyword => {
-                    if (q.includes(keyword)) score += keyword.length;
-                });
-                if (score > maxScore) {
-                    maxScore = score;
-                    bestMatch = item;
-                }
+        knowledgeBase.forEach(item => {
+            let score = 0;
+            item.keywords.forEach(keyword => {
+                if (q.includes(keyword)) score += keyword.length;
             });
-
-            if (bestMatch && maxScore > 0) {
-                return bestMatch.response;
+            if (score > maxScore) {
+                maxScore = score;
+                bestMatch = item;
             }
+        });
 
-            return "I'm not sure about that! 🤔 Try asking about Christos's **Projects**, **Tech Stack**, **Certifications**, **Education**, or **Contact** info.";
+        if (bestMatch && maxScore > 0) {
+            return bestMatch.response;
         }
 
-        function handleSend() {
-            const text = chatInput.value.trim();
-            if (!text) return;
-            addMessage(text, 'user');
-            chatInput.value = '';
-            setTimeout(() => {
-                addMessage(processQuery(text), 'bot');
-            }, 350);
-        }
+        return "I couldn't find exact details on that! 🤔 Try asking specifically about projects like **AI Study Buddy**, certifications like **Anthropic / Google Cloud**, or Christos's **Tech Stack**.";
+    }
 
-        function sendQuickMsg(msg) {
-            addMessage(msg, 'user');
-            setTimeout(() => {
-                addMessage(processQuery(msg), 'bot');
-            }, 350);
-        }
+    function handleSend() {
+        const text = chatInput.value.trim();
+        if (!text) return;
+        addMessage(text, 'user');
+        chatInput.value = '';
+        setTimeout(() => {
+            addMessage(processQuery(text), 'bot');
+        }, 350);
+    }
 
-        chatSend.addEventListener('click', handleSend);
-        chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
-    </script>
-</body>
-</html>
+    function sendQuickMsg(msg) {
+        addMessage(msg, 'user');
+        setTimeout(() => {
+            addMessage(processQuery(msg), 'bot');
+        }, 350);
+    }
+
+    chatSend.addEventListener('click', handleSend);
+    chatInput.addEventListener('keypress', (e) => { if (e.key === 'Enter') handleSend(); });
 </script>
 </body>
 </html>
