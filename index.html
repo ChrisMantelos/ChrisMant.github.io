@@ -628,7 +628,7 @@
             backdrop-filter: blur(16px);
             -webkit-backdrop-filter: blur(16px);
             border: 1px solid var(--border-color);
-            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: opacity 0.4s ease, box-shadow 0.4s ease, background-color 0.4s ease;
             overflow: hidden;
         }
 
@@ -2085,11 +2085,7 @@
             "max-glare": 0.15,
         });
     </script>
-               <!-- Back to Top Button -->
-        <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Back to Top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
-        
+    
         <!-- Chatbot Widget -->
         <div id="chatbot-container">
             <button id="chatbot-toggle" aria-label="Open Chat"><i class="fas fa-robot"></i></button>
@@ -2137,7 +2133,7 @@
         // GENERAL INTENTS
         {
             keywords: ["hi", "hello", "hey", "who are you", "greetings"],
-            response: "Hello! 👋 I'm Christos's AI Assistant. Ask me about specific projects (e.g. 'AI Study Buddy'), certifications, skills, or studies!"
+            response: "Hello!  I'm Christos's AI Assistant. Ask me about specific projects (e.g. 'AI Study Buddy'), certifications, skills, or studies!"
         },
         {
             keywords: ["about", "bio", "christos", "mantelos", "who is"],
@@ -2203,11 +2199,11 @@
         },
         {
             keywords: ["education", "study", "studies", "saek", "thermis"],
-            response: "🎓 **Education:**\nSoftware Development Studies at **SAEK Thermis** (2024 - Present), focusing on OOP, Data Structures, Web Development, and Databases."
+            response: "🎓 **Education:**\nSoftware Development Studies at **SAEK Thermis** (2025 - Present), focusing on OOP, Data Structures, Web Development, and Databases."
         },
         {
             keywords: ["contact", "email", "reach", "linkedin", "github"],
-            response: "✉️ **Get in Touch:**\n• LinkedIn: Christos Mantelos\n• GitHub: ChrisMantelos\n• Or send a message using the Contact Form on this page!"
+            response: "✉️ **Get in Touch:**\n• LinkedIn: Chris Mantelos\n• GitHub: ChrisMantelos\n• Or send a message using the Contact Form on this page!"
         }
     ];
 
