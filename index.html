@@ -20,7 +20,6 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
         * {
@@ -951,8 +950,10 @@
 
         .back-to-top {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
+            bottom: 85px;
+            right: 25px;
+            width: 50px;
+            height: 50px;
             z-index: 99;
             opacity: 0;
             visibility: hidden;
@@ -1063,7 +1064,7 @@
             .certifications-grid { grid-template-columns: 1fr; }
             .container { padding: 0 16px 60px 16px; }
             .about-card, .contact-section { padding: 24px; }
-            .back-to-top { bottom: 20px; right: 20px; width: 40px; height: 40px; }
+            .back-to-top { bottom: 85px; right: 28px; width: 44px; height: 44px; }
             .toast { left: 16px; right: 16px; bottom: 80px; }
         }
         /* --- TECH STACK GRID --- */
@@ -1089,11 +1090,12 @@
             transform: translateY(-4px);
         }
 
-        .skill-card i {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            color: var(--accent);
+        .skill-icon {
+            width: 2.5rem;
+            height: 2.5rem;
+            margin: 0 auto 0.5rem auto;
             display: block;
+            color: var(--accent);
         }
 
         /* --- TIMELINE --- */
@@ -1132,45 +1134,7 @@
             color: var(--accent);
             font-weight: 600;
         }
-               /* --- BACK TO TOP BUTTON --- */
-        #back-to-top {
-            position: fixed;
-            bottom: 85px; /* Τοποθέτηση ακριβώς πάνω από το Chatbot */
-            right: 25px;  /* Ευθυγράμμιση στην ίδια ευθεία δεξιά */
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            background: var(--card-bg);
-            border: 1px solid var(--border-color);
-            color: var(--text-primary);
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.1rem;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.3);
-            backdrop-filter: blur(12px);
-            transition: opacity 0.3s ease, transform 0.3s ease, visibility 0.3s ease;
-            z-index: 9998;
-            
-            /* Αρχικά κρυμμένο */
-            opacity: 0;
-            visibility: hidden;
-            pointer-events: none;
-        }
-        
-        #back-to-top.show {
-            opacity: 1;
-            visibility: visible;
-            pointer-events: auto;
-        }
-        
-        #back-to-top:hover {
-            border-color: var(--accent);
-            color: var(--accent);
-            transform: translateY(-3px);
-        }
-        /* --- CHATBOT WIDGET --- */
+               /* --- CHATBOT WIDGET --- */
         #chatbot-container {
             position: fixed;
             bottom: 25px;
@@ -1369,7 +1333,7 @@
         
         <section class="stats-grid reveal">
             <div class="stat-card">
-                <div class="stat-number" data-target="13" data-symbol="+">0</div>
+                <div class="stat-number" data-target="16" data-symbol="+">0</div>
                 <div class="stat-label">Verified Certifications</div>
             </div>
             <div class="stat-card">
@@ -1433,19 +1397,36 @@
             <h2 class="section-title">Tech Stack</h2>
             <div class="skills-grid">
                 <div class="skill-card">
-                    <i class="fab fa-python"></i>
+                    <svg class="skill-icon" viewBox="0 0 48 48" aria-hidden="true">
+                        <rect x="4" y="4" width="26" height="22" rx="7" fill="#3776AB"/>
+                        <rect x="18" y="22" width="26" height="22" rx="7" fill="#FFD43B"/>
+                        <circle cx="13" cy="11" r="2.2" fill="#fff"/>
+                        <circle cx="35" cy="37" r="2.2" fill="#306998"/>
+                    </svg>
                     <span>Python</span>
                 </div>
                 <div class="skill-card">
-                    <img src="https://cdn.jsdelivr.net/gh/devicons/devicon/icons/flutter/flutter-original.svg" alt="Flutter" style="width: 2.5rem; height: 2.5rem; margin: 0 auto 0.5rem auto; display: block;">
+                    <svg class="skill-icon" viewBox="0 0 48 48" aria-hidden="true">
+                        <polygon points="30,4 12,22 19,29 40,8" fill="#54C5F8"/>
+                        <polygon points="24,22 40,22 28,34 12,34" fill="#02569B"/>
+                        <polygon points="19,29 28,38 12,38 12,34 19,29" fill="#01579B"/>
+                    </svg>
                     <span>Flutter</span>
                 </div>
                 <div class="skill-card">
-                    <i class="fas fa-database"></i>
+                    <svg class="skill-icon" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5">
+                        <ellipse cx="24" cy="11" rx="15" ry="6"/>
+                        <path d="M9 11v26c0 3.3 6.7 6 15 6s15-2.7 15-6V11"/>
+                        <path d="M9 24c0 3.3 6.7 6 15 6s15-2.7 15-6"/>
+                    </svg>
                     <span>SQL</span>
                 </div>
                 <div class="skill-card">
-                    <i class="fab fa-linux"></i>
+                    <svg class="skill-icon" viewBox="0 0 48 48" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                        <rect x="4" y="7" width="40" height="34" rx="4"/>
+                        <polyline points="12,18 19,24 12,30"/>
+                        <line x1="23" y1="31" x2="33" y2="31"/>
+                    </svg>
                     <span>Linux</span>
                 </div>
             </div>
@@ -1547,7 +1528,64 @@
             </div>
 
             <div class="certifications-grid" id="cert-grid">
-                
+
+                <a href="https://www.deeplearning.ai/accomplishments/a521bfcc-0947-4afc-80ad-ae3e20ad0050" target="_blank" class="certification-card cert-item" data-category="ai">
+                    <span class="view-badge">View Certificate</span>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="#00A6A6"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+                        </div>
+                        <div>
+                            <h3>Building Agentic RAG with LlamaIndex</h3>
+                            <div class="organization">DeepLearning.AI</div>
+                        </div>
+                    </div>
+                    <div class="date">October 2026</div>
+                    <div class="credential-id">ID: a521bfcc-0947-4afc-80ad-ae3e20ad0050</div>
+                    <div class="skills">
+                        <span class="skill-badge">Advanced RAG</span>
+                        <span class="skill-badge">AI Agents</span>
+                    </div>
+                </a>
+
+                <a href="https://www.deeplearning.ai/accomplishments/d8a82452-c45d-4e5c-ae98-4fdccea0ebbb" target="_blank" class="certification-card cert-item" data-category="ai">
+                    <span class="view-badge">View Certificate</span>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="#00A6A6"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+                        </div>
+                        <div>
+                            <h3>Building and Evaluating Advanced RAG</h3>
+                            <div class="organization">DeepLearning.AI</div>
+                        </div>
+                    </div>
+                    <div class="date">October 2026</div>
+                    <div class="credential-id">ID: d8a82452-c45d-4e5c-ae98-4fdccea0ebbb</div>
+                    <div class="skills">
+                        <span class="skill-badge">Advanced RAG</span>
+                        <span class="skill-badge">LLM Evaluation</span>
+                    </div>
+                </a>
+
+                <a href="https://www.deeplearning.ai/certificates/b6d4592b-7c41-45d1-909f-23c64529415b" target="_blank" class="certification-card cert-item" data-category="ai">
+                    <span class="view-badge">View Certificate</span>
+                    <div class="card-header">
+                        <div class="card-icon">
+                            <svg viewBox="0 0 24 24" fill="#00A6A6"><path d="M12 2l2.4 7.4H22l-6.2 4.5 2.4 7.4L12 16.8l-6.2 4.5 2.4-7.4L2 9.4h7.6z"/></svg>
+                        </div>
+                        <div>
+                            <h3>Generative AI with Large Language Models</h3>
+                            <div class="organization">DeepLearning.AI</div>
+                        </div>
+                    </div>
+                    <div class="date">October 2026</div>
+                    <div class="credential-id">ID: b6d4592b-7c41-45d1-909f-23c64529415b</div>
+                    <div class="skills">
+                        <span class="skill-badge">Large Language Models (LLM)</span>
+                        <span class="skill-badge">Generative AI Architecture</span>
+                    </div>
+                </a>
+
                 <a href="https://www.kaggle.com/learn/certification/chrismantelos/advanced-sql" target="_blank" class="certification-card cert-item" data-category="python">
                     <span class="view-badge">View Certificate</span>
                     <div class="card-header">
@@ -1821,7 +1859,11 @@
                     </div>
                 </div>
 
-                <form class="contact-form" id="contactForm">
+                <form class="contact-form" id="contactForm" action="https://formsubmit.co/chris.mantelos.07@gmail.com" method="POST">
+                    <input type="hidden" name="_subject" value="New message from portfolio">
+                    <input type="hidden" name="_captcha" value="false">
+                    <input type="hidden" name="_template" value="table">
+                    <input type="hidden" id="nextUrl" name="_next" value="">
                     <div class="form-group">
                         <label for="name">Full Name</label>
                         <input type="text" id="name" name="name" placeholder="Your name" required>
@@ -2040,41 +2082,17 @@
         const submitText = document.getElementById('submitText');
         const toast = document.getElementById('toastNotification');
 
-        contactForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-
+        contactForm.addEventListener('submit', function() {
             submitBtn.disabled = true;
             submitText.textContent = 'Sending...';
-
-            const formData = new FormData(contactForm);
-
-            fetch('https://formsubmit.co/ajax/chris.mantelos.07@gmail.com', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    toast.classList.add('show');
-                    contactForm.reset();
-
-                    setTimeout(() => {
-                        toast.classList.remove('show');
-                    }, 4000);
-                } else {
-                    alert('Oops! There was a problem submitting your form.');
-                }
-            })
-            .catch(error => {
-                alert('Oops! There was a network error. Please try again.');
-            })
-            .finally(() => {
-                submitBtn.disabled = false;
-                submitText.textContent = 'Send Message';
-            });
+            document.getElementById('nextUrl').value = location.href.split('?')[0].split('#')[0] + '?sent=1#contact';
         });
+
+        if (new URLSearchParams(location.search).get('sent') === '1') {
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 4000);
+            history.replaceState(null, '', location.pathname + '#contact');
+        }
     </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.1/vanilla-tilt.min.js"></script>
     <script>
@@ -2086,16 +2104,13 @@
         });
     </script>
                <!-- Back to Top Button -->
-        <button id="back-to-top" onclick="window.scrollTo({top: 0, behavior: 'smooth'});" aria-label="Back to Top">
-            <i class="fas fa-arrow-up"></i>
-        </button>
         
         <!-- Chatbot Widget -->
         <div id="chatbot-container">
-            <button id="chatbot-toggle" aria-label="Open Chat"><i class="fas fa-robot"></i></button>
+            <button id="chatbot-toggle" aria-label="Open Chat"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1"/><circle cx="9" cy="14" r="1.5" fill="currentColor"/><circle cx="15" cy="14" r="1.5" fill="currentColor"/></svg></button>
             <div id="chatbot-window" class="hidden">
                 <div class="chat-header">
-                    <span><i class="fas fa-robot"></i> Chris AI Assistant</span>
+                    <span style="display:flex;align-items:center;gap:8px;"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="8" width="16" height="12" rx="3"/><path d="M12 4v4"/><circle cx="12" cy="3" r="1"/><circle cx="9" cy="14" r="1.5" fill="currentColor"/><circle cx="15" cy="14" r="1.5" fill="currentColor"/></svg> Chris AI Assistant</span>
                     <button id="chat-close" style="background:none; border:none; color:white; font-size:1.2rem; cursor:pointer;">&times;</button>
                 </div>
                 <div id="chat-messages">
@@ -2110,7 +2125,7 @@
                 </div>
                 <div class="chat-input-area">
                     <input type="text" id="chat-input" placeholder="Ask e.g. tell me about AI Study Buddy...">
-                    <button id="chat-send"><i class="fas fa-paper-plane"></i></button>
+                    <button id="chat-send" aria-label="Send"><svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg></button>
                 </div>
             </div>
         </div>
@@ -2133,107 +2148,123 @@
         chatMessages.scrollTop = chatMessages.scrollHeight;
     }
 
-    const knowledgeBase = [
-        // GENERAL INTENTS
-        {
-            keywords: ["hi", "hello", "hey", "who are you", "greetings"],
-            response: "Hello! 👋 I'm Christos's AI Assistant. Ask me about specific projects (e.g. 'AI Study Buddy'), certifications, skills, or studies!"
-        },
-        {
-            keywords: ["about", "bio", "christos", "mantelos", "who is"],
-            response: "Christos Mantelos is a Software Development student at SAEK Thermis specializing in Python, Flutter, SQL, Linux, and AI integration."
-        },
-        {
-            keywords: ["project", "projects", "work", "portfolio"],
-            response: "🚀 **Featured Projects:**\n1. **AI Study Buddy** (AI Assistant)\n2. **Text Professionalizer** (NLP/AI)\n3. **Expense Tracker-Pandas** (Data Analysis)\n4. **Flutter Quote Generator** (Mobile App)\n\nType the name of any project to learn more!"
-        },
+    // ---------- Local retrieval engine (no external API) ----------
+    const normalize = str => str.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase();
+    const tokenize = str => normalize(str).replace(/[^a-z0-9\u0370-\u03ff\s]/g, ' ').split(/\s+/).filter(Boolean);
 
-        // SPECIFIC PROJECTS
-        {
-            keywords: ["study buddy", "ai study", "studybot"],
-            response: "🤖 **AI Study Buddy**\n• **Created:** 2024\n• **Purpose:** Helps students analyze study material, generate summaries, and test their knowledge interactively.\n• **Tech Used:** Python, LLM APIs, Streamlit/Web Interface.\n• **Key Feature:** Simplifies complex academic topics using tailored AI prompts."
-        },
-        {
-            keywords: ["text professionalizer", "professionalizer", "text AI"],
-            response: "✍️ **Text Professionalizer**\n• **Created:** 2024\n• **Purpose:** Converts informal drafts into formal, professional business emails and documentation.\n• **Tech Used:** Python, Natural Language Processing, Prompt Engineering.\n• **Key Feature:** Adjusts tone, grammar, and vocabulary seamlessly."
-        },
-        {
-            keywords: ["expense tracker", "pandas tracker", "expense"],
-            response: "📊 **Expense Tracker-Pandas**\n• **Created:** 2024\n• **Purpose:** Automates personal financial tracking and category-wise spending analysis.\n• **Tech Used:** Python, Pandas, Matplotlib/Seaborn.\n• **Key Feature:** Generates visual spending reports and CSV data insights."
-        },
-        {
-            keywords: ["flutter quote", "quote generator", "quote app"],
-            response: "📱 **Flutter Quote Generator**\n• **Created:** 2024\n• **Purpose:** A cross-platform mobile app providing daily inspirational quotes with clean UI animations.\n• **Tech Used:** Flutter, Dart, REST APIs.\n• **Key Feature:** Fast state management and slick UI design."
-        },
+    const SYN = {
+        'πιστοποιησεις': 'certifications', 'πιστοποιηση': 'certification', 'πιστοποιητικα': 'certifications',
+        'εργα': 'projects', 'εργο': 'project', 'δεξιοτητες': 'skills', 'σπουδες': 'education',
+        'επικοινωνια': 'contact', 'τεχνολογιες': 'tech', 'γεια': 'hi', 'καλημερα': 'hi', 'γειασου': 'hi',
+        'ευχαριστω': 'thanks', 'ευχαριστωω': 'thanks', 'περισσοτερα': 'more', 'λεπτομερειες': 'details',
+        'αυτο': 'it', 'αυτοσ': 'it', 'πεσ': 'tell', 'ποιος': 'who', 'ποιοι': 'who'
+    };
+    const STOP = new Set(['the','a','an','is','are','of','what','which','does','do','and','or','to','in','with','on','for','can','you','i','his','her','me','tell','about','his','he','be','has','have','was','how','its','some','any','all','ο','η','το','τα','και','να','για','μου','μιλησε','ποια','ποιο','ειναι','σου','σε','με','τον','την','του','της']);
+    const FOLLOW = new Set(['it','that','this','more','details','explain','again','further','ιτ']);
 
-        // CERTIFICATIONS INTENTS
-        {
-            keywords: ["cert", "certs", "certification", "certifications"],
-            response: "📜 **Christos's Certifications:**\n• Anthropic (Claude API)\n• Google Cloud (Vertex AI & Prompt Design)\n• AWS (Generative AI)\n• IBM (AI Fundamentals)\n• freeCodeCamp (Python)\n• Kaggle & University of Helsinki\n\nAsk about any specific certification for full details!"
-        },
-        {
-            keywords: ["anthropic", "claude"],
-            response: "📜 **Anthropic: Building with Claude API**\n• **Focus:** Integrating Claude LLMs into applications.\n• **Skills Learned:** Prompt engineering, API integration, streaming responses, and building AI agents."
-        },
-        {
-            keywords: ["google", "vertex", "prompt design"],
-            response: "📜 **Google Cloud: Prompt Design & AI Principles**\n• **Focus:** Generative AI solutions on Google Cloud Platform.\n• **Skills Learned:** Designing effective prompts for Vertex AI, enterprise AI safety, and AI ethics."
-        },
-        {
-            keywords: ["aws", "amazon"],
-            response: "📜 **AWS: Introduction to Generative AI**\n• **Focus:** Fundamentals of Cloud-based Generative AI.\n• **Skills Learned:** AWS AI services overview, Foundation Models (FMs), and cloud deployment basics."
-        },
-        {
-            keywords: ["helsinki", "elements of ai"],
-            response: "📜 **University of Helsinki: Elements of AI**\n• **Focus:** Core concepts of Artificial Intelligence & Machine Learning.\n• **Skills Learned:** Search algorithms, neural networks, machine learning math, and real-world AI applications."
-        },
-        {
-            keywords: ["freecodecamp", "scientific computing"],
-            response: "📜 **freeCodeCamp: Scientific Computing with Python**\n• **Focus:** Advanced Python programming.\n• **Skills Learned:** Data structures, algorithms, object-oriented programming (OOP), and problem-solving."
-        },
-        {
-            keywords: ["ibm"],
-            response: "📜 **IBM: AI Fundamentals**\n• **Focus:** Foundational principles of AI technology.\n• **Skills Learned:** Machine Learning pipeline, NLP basics, computer vision, and IBM Watson tools."
-        },
+    const docs = [
+        { id: 'greeting', kw: ['hi','hello','hey','greetings','howdy'],
+          text: "Hi! 👋 I'm Christos's assistant. Ask me about his projects, certifications (16 verified), skills, education, RAG work, or how to get in touch." },
+        { id: 'thanks', kw: ['thanks','thank','thx'],
+          text: "You're welcome! 😊 Anything else you'd like to know?" },
+        { id: 'about', kw: ['about','bio','who','christos','mantelos','background','person','biography','himself'],
+          text: "Christos Mantelos is a Computer Science student at SAEK Thermis, focused on software development, machine learning and AI. He builds practical apps with Python, Flutter and the Claude API." },
+        { id: 'education', kw: ['education','studies','study','saek','thermis','university','school','degree','course'],
+          text: "🎓 Software Development studies at SAEK Thermis (2024 – present), covering OOP, data structures, web development and databases." },
+        { id: 'skills', kw: ['skills','skill','stack','tech','technologies','languages','python','dart','sql','javascript','linux','git','github','flutter','fastapi','tools'],
+          text: "🛠️ Tech stack: Languages: Python, Dart, SQL, JavaScript. Frameworks: Flutter, FastAPI, HTML5/CSS3. AI: Claude API, LLMs, RAG, prompt engineering, Vertex AI. Systems: Linux (CLI, Bash), Git/GitHub." },
+        { id: 'contact', kw: ['contact','email','reach','linkedin','github','message','hire','touch','connect'],
+          text: "✉️ Get in touch via LinkedIn (Christos Mantelos), GitHub (ChrisMantelos), or the contact form at the bottom of this page." },
 
-        // SKILLS & EDUCATION
-        {
-            keywords: ["skill", "skills", "tech", "stack", "python", "flutter", "sql", "linux"],
-            response: "🛠️ **Tech Stack:**\n• **Languages:** Python, Dart, SQL, JavaScript\n• **Frameworks:** Flutter, HTML5/CSS3\n• **Systems:** Linux (CLI Navigation, Bash), Git/GitHub"
-        },
-        {
-            keywords: ["education", "study", "studies", "saek", "thermis"],
-            response: "🎓 **Education:**\nSoftware Development Studies at **SAEK Thermis** (2024 - Present), focusing on OOP, Data Structures, Web Development, and Databases."
-        },
-        {
-            keywords: ["contact", "email", "reach", "linkedin", "github"],
-            response: "✉️ **Get in Touch:**\n• LinkedIn: Christos Mantelos\n• GitHub: ChrisMantelos\n• Or send a message using the Contact Form on this page!"
-        }
+        { id: 'projects', kw: ['projects','project','work','portfolio','featured','built','apps','app'],
+          text: "🚀 Featured projects:\n1. AI Study Buddy (Flutter & FastAPI with the Claude API)\n2. Text Professionalizer (Python & LLM-based text refinement)\n3. Expense Tracker (Python & Pandas analysis)\n4. Flutter Quote Generator (cross-platform mobile app)\n\nAsk about any of them by name for more details." },
+        { id: 'proj-study', kw: ['study','buddy','quiz','quizzes','fastapi','notes'],
+          text: "🤖 AI Study Buddy: an AI app that turns study notes into interactive multiple-choice quizzes. Flutter frontend, FastAPI backend, and the Claude API. Skills: Flutter, Python, FastAPI, Claude API." },
+        { id: 'proj-prof', kw: ['professionalizer','text','nlp','email','formal','rewrite'],
+          text: "✍️ Text Professionalizer: an AI tool that refines informal raw text into polished, professional communication. Skills: Python, AI, LLM, NLP." },
+        { id: 'proj-expense', kw: ['expense','expenses','tracker','pandas','finance','budget','spending'],
+          text: "📊 Expense Tracker: a data-driven personal expense analysis system using Pandas to track, categorize and report spending patterns. Skills: Python, Pandas, Data Science." },
+        { id: 'proj-quote', kw: ['quote','quotes','dart','mobile','generator'],
+          text: "📱 Flutter Quote Generator: a cross-platform mobile app that generates, customizes and shares inspirational quotes. Skills: Flutter, Dart, Mobile UI." },
+
+        { id: 'certs', kw: ['certifications','certification','certs','cert','credentials','certificates','badges'],
+          text: "📜 Verified certifications (16):\n• DeepLearning.AI: Building Agentic RAG with LlamaIndex; Building and Evaluating Advanced RAG; Generative AI with Large Language Models\n• Kaggle: Advanced SQL; Pandas; Python\n• Anthropic: Building with the Claude API\n• Google: Build Apps with Flutter; Prompt Design in Vertex AI; Applying AI Principles\n• Microsoft & LinkedIn: Career Essentials in Generative AI\n• AWS: Introduction to Generative AI\n• IBM: AI Fundamentals\n• Cisco: Linux Unhatched\n• University of Helsinki: Elements of AI\n• freeCodeCamp: Scientific Computing with Python\n\nAsk about any one of them for details!" },
+        { id: 'rag', kw: ['rag','retrieval','llamaindex','agentic','agents','agent','advanced','evaluation','evaluate'],
+          text: "🧠 RAG (retrieval-augmented generation) is one of his focus areas. He completed Building Agentic RAG with LlamaIndex and Building and Evaluating Advanced RAG (DeepLearning.AI, October 2026)." },
+        { id: 'cert-agentic', kw: ['agentic','llamaindex','llama'],
+          text: "📜 Building Agentic RAG with LlamaIndex: DeepLearning.AI, October 2026. Skills: Advanced RAG, AI Agents." },
+        { id: 'cert-advrag', kw: ['advanced','evaluating','evaluation','ragas'],
+          text: "📜 Building and Evaluating Advanced RAG: DeepLearning.AI, October 2026. Skills: Advanced RAG, LLM Evaluation." },
+        { id: 'cert-genai-llm', kw: ['generative','genai','llm','llms','large','language','models','deeplearning'],
+          text: "📜 Generative AI with Large Language Models: DeepLearning.AI, October 2026. Skills: Large Language Models (LLM), Generative AI Architecture." },
+        { id: 'cert-sql', kw: ['sql','advanced','kaggle','database','databases'],
+          text: "📜 Advanced SQL: Kaggle, September 2026. Skills: SQL." },
+        { id: 'cert-linux', kw: ['linux','cisco','command','unhatched','cli','bash'],
+          text: "📜 Linux Unhatched: Cisco, July 2026. Skills: Linux, Command Line, OS Fundamentals." },
+        { id: 'cert-claude', kw: ['anthropic','claude','api'],
+          text: "📜 Building with the Claude API: Anthropic, July 2026. Focus: integrating Claude into applications. Skills: AI, Prompt Engineering, API Development." },
+        { id: 'cert-helsinki', kw: ['helsinki','elements','university','mooc'],
+          text: "📜 Elements of AI: University of Helsinki, May 2026. Skills: AI Fundamentals, Machine Learning." },
+        { id: 'cert-aws', kw: ['aws','amazon','genai','cloud'],
+          text: "📜 AWS Introduction to Generative AI: Amazon Web Services, May 2026. Skills: AWS, Generative AI, Cloud Computing." },
+        { id: 'cert-pandas', kw: ['pandas','cleaning','analysis'],
+          text: "📜 Pandas: Kaggle, May 2026. Skills: Pandas, Data Cleaning, Data Analysis." },
+        { id: 'cert-kaggle-py', kw: ['python','kaggle','programming'],
+          text: "📜 Python: Kaggle, May 2026. Skills: Python, Data Structures, Programming." },
+        { id: 'cert-flutter', kw: ['flutter','dart','mobile','cross'],
+          text: "📜 Build Apps with Flutter: Google, May 2026. Skills: Flutter, Dart, Mobile Dev, Cross-platform." },
+        { id: 'cert-msft', kw: ['microsoft','copilot','career','essentials','linkedin'],
+          text: "📜 Career Essentials in Generative AI: Microsoft & LinkedIn, April 2026. Skills: AI for Business, Microsoft Copilot, Generative AI." },
+        { id: 'cert-vertex', kw: ['vertex','prompt','design','google'],
+          text: "📜 Prompt Design in Vertex AI: Google, April 2026. Skills: Generative AI, Prompt Engineering, Vertex AI, Google Cloud." },
+        { id: 'cert-principles', kw: ['principles','responsible','ethics','safety'],
+          text: "📜 Applying AI Principles: Google Cloud, April 2026. Skills: Responsible AI, Cloud Computing." },
+        { id: 'cert-ibm', kw: ['ibm','watson','fundamentals'],
+          text: "📜 AI Fundamentals: IBM, April 2026. Skills: AI, Machine Learning, IBM Watson." },
+        { id: 'cert-fcc', kw: ['freecodecamp','scientific','computing'],
+          text: "📜 Scientific Computing with Python: freeCodeCamp, April 2026. Skills: Python, Algorithms, Scientific Computing." },
+
     ];
+    docs.forEach(d => {
+        d.kwSet = new Set(d.kw.map(normalize));
+        d.tokSet = new Set(tokenize(d.text + ' ' + d.kw.join(' ')));
+    });
+
+    const chatCtx = { last: null };
+    const FALLBACK = "I couldn't find that yet 🤔 Try asking about projects (e.g. AI Study Buddy), certifications, RAG work, skills, education, or contact details.";
+
+    function scoreDoc(doc, qTokens) {
+        let s = 0;
+        qTokens.forEach(t => {
+            if (doc.kwSet.has(t)) s += 3;
+            else if (doc.tokSet.has(t)) s += 1;
+            else if (t.length >= 4 && [...doc.kwSet].some(k => k.length >= 4 && (k.startsWith(t) || t.startsWith(k)))) s += 2;
+        });
+        return s;
+    }
 
     function processQuery(query) {
-        const q = query.toLowerCase().trim();
-        if (!q) return "Please enter a question!";
+        const raw = query.trim();
+        if (!raw) return "Please enter a question!";
 
-        let bestMatch = null;
-        let maxScore = 0;
+        const q = tokenize(raw).map(t => SYN[t] || t);
+        const content = q.filter(t => !STOP.has(t));
+        const isFollowUp = q.some(t => FOLLOW.has(t)) || content.length === 0;
 
-        knowledgeBase.forEach(item => {
-            let score = 0;
-            item.keywords.forEach(keyword => {
-                if (q.includes(keyword)) score += keyword.length;
-            });
-            if (score > maxScore) {
-                maxScore = score;
-                bestMatch = item;
-            }
-        });
+        const scored = docs
+            .map(d => ({ d, s: scoreDoc(d, content) }))
+            .filter(x => x.s > 0)
+            .sort((a, b) => b.s - a.s);
 
-        if (bestMatch && maxScore > 0) {
-            return bestMatch.response;
+        // Follow-up question ("tell me more", "details", "it") -> continue the previous topic
+        if (chatCtx.last && isFollowUp && (scored.length === 0 || scored[0].s < 3)) {
+            return chatCtx.last.text;
         }
+        if (scored.length === 0) return FALLBACK;
 
-        return "I couldn't find exact details on that! 🤔 Try asking specifically about projects like **AI Study Buddy**, certifications like **Anthropic / Google Cloud**, or Christos's **Tech Stack**.";
+        const top = scored.slice(0, 3).filter(x => x.s >= scored[0].s * 0.5).map(x => x.d);
+        chatCtx.last = top[0];
+        return top.map(d => d.text).join("\n\n");
     }
 
     function handleSend() {
